@@ -13,7 +13,8 @@ import Wrapper from "../../styled-blocks/wrapper/wrapper";
 import MainPage from "../main/main-page";
 import WorkPage from "../work/work-page";
 import WorksPage from "../works/works-page";
-import { AppBar, Box, Button } from "@mui/material";
+import { AppBar } from "@mui/material";
+import UploadPage from "../upload/upload-page";
 
 
 function App() {
@@ -21,21 +22,17 @@ function App() {
     <BrowserRouter>
       <AppBar>
         <Wrapper display="flex" align="center">
-          <Box>
+          <NavigationHeader>
             {
               Object.keys(AppRoute).map((key, index) => {
                 if (key === "WORK") {
                   // eslint-disable-next-line array-callback-return
                   return;
                 }
-                return (
-                    <Button link={key === "WORKS" ? `/works/1` : AppRoute[key]} key={key+index} sx={{ color: '#fff' }}>
-                      {key}
-                    </Button>
-                )
+                return <NavigationItemBlock text={key} link={key === "WORKS" ? `/works/1` : AppRoute[key]} key={key+index}/>
               })
             }
-          </Box>
+          </NavigationHeader>
         </Wrapper>
       </AppBar>
       <Main>
@@ -53,6 +50,11 @@ function App() {
           <Route 
             path={AppRoute.WORK+`:id`}
             element={<WorkPage/>}
+          >
+          </Route>
+          <Route 
+            path={AppRoute.UPLOAD}
+            element={<UploadPage/>}
           >
           </Route>
         </Routes>

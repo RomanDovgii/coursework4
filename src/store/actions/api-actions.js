@@ -20,3 +20,16 @@ export const FetchWork = (id) => (dispatch, _getState, api) => (
         console.log(err)
     })
 )
+
+export const UploadWork  = (data) => (dispatch, _getState, api) => (
+    api.post(ApiEndpoints.WORKS, {
+        date: new Date(),
+        title: data.title,
+        description: data.description,
+        cover: data.cover,
+    }).then((response) => {
+        FetchWorks()
+    }).catch((err) => {
+        console.log(err)
+    })
+)

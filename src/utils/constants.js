@@ -1,6 +1,7 @@
 export const AppRoute = {
     MAIN: `/`,
     WORKS: `/works/:id`,
+    UPLOAD: `/upload`,
     WORK: `/work/:id`,
 }
 
@@ -22,6 +23,7 @@ export const ApiEndpoints = {
 export const ActionType = {
     LOAD_WORKS: `LOAD_WORKS`,
     LOAD_WORK: `LOAD_WORK`,
+    UPLOAD_WORK: `UPLOAD_WORK`,
     CHANGE_PAGE: `CHANGE_PAGE`,
     SORT: `SORT`
 }

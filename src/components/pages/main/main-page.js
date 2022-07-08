@@ -12,7 +12,7 @@ import PaginationLink from "../../styled-blocks/navigation-parts/pagination-link
 import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
 import { changePage, changeSort } from "../../../store/actions/action";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 function MainPage(props) {
     const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
@@ -43,27 +43,30 @@ function MainPage(props) {
     }
 
     return <Wrapper>
-        <Button 
-            onClick={(evt) => {
-                evt.preventDefault();
-                sort(``);
-            }}
-            sx={"margin: 3rem 0; color: #fff"}
-        >Disable sorting</Button>
-        <Button 
-            onClick={(evt) => {
-                evt.preventDefault();
-                sort(`title`);
-            }}
-            sx={"margin: 3rem 0; color: #fff"}
-        >Sort by title</Button>
-        <Button 
-            onClick={(evt) => {
-                evt.preventDefault();
-                sort(`date`);
-            }}
-            sx={"margin: 3rem 0; color: #fff"}
-        >Sort by date</Button>
+        <Box sx={{ margin: "2rem 0"}} m={2}>        
+            <Button 
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    sort(``);
+                }}
+                variant="contained"
+            >Disable sorting</Button>
+            <Button 
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    sort(`title`);
+                }}
+                variant="contained"
+            >Sort by title</Button>
+            <Button 
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    sort(`date`);
+                }}
+                variant="contained"
+            >Sort by date</Button>
+        </Box>
+
         <List>
             {
                 visibleWorks.map((work) => {

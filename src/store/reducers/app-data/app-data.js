@@ -49,15 +49,12 @@ const appData = (state = initialState, action) => {
         case ActionType.SORT:
             const newSort = action.payload;
             let sortedWorks = []
-            console.log(action.payload)
             switch (newSort) {
                 case `date`:
                     sortedWorks = [...state.works]
                     sortedWorks.sort(function(a,b) {
                         const dateA = new Date(a.date);
-                        console.log(dateA)
                         const dateB = new Date(b.date);
-                        console.log(dateB)
                         return Number(dateB) - Number(dateA);
                     })
                     break;
