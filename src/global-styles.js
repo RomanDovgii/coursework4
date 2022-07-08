@@ -11,6 +11,13 @@ const GlobalStyles = createGlobalStyle`
         background-color: #1B2430;
         font-family: Arial, Helvetica, sans-serif;
     }
+
+    #root{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 `
 
 export default GlobalStyles;

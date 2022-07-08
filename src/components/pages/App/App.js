@@ -7,8 +7,14 @@ import { AppRoute } from "../../../utils/constants";
 import NavigationItemBlock from "../../blocks/navigation-item-block/navigation-item-block";
 import Footer from "../../styled-blocks/basic-parts/footer/footer";
 import Header from "../../styled-blocks/basic-parts/header/header";
+import Main from "../../styled-blocks/basic-parts/main/main";
 import NavigationHeader from "../../styled-blocks/navigation-parts/navigation-header/navigation-header";
 import Wrapper from "../../styled-blocks/wrapper/wrapper";
+import MainPage from "../main/main-page";
+import WorkPage from "../work/work-page";
+import Work from "../work/work-page";
+import WorksPage from "../works/works-page";
+import Works from "../works/works-page";
 
 
 function App() {
@@ -19,25 +25,37 @@ function App() {
           <NavigationHeader>
             {
               Object.keys(AppRoute).map((key, index) => {
-                if (key !== "WORK") {
-                  return <NavigationItemBlock text={key} link={key} key={key+index}/>
+                if (key === "WORK") {
+                  return;
                 }
+                return <NavigationItemBlock text={key} link={key} key={key+index}/>
               })
             }
           </NavigationHeader>
         </Wrapper>
       </Header>
-      <Routes>
-        <Route path={AppRoute.MAIN}>
-        </Route>
-        <Route path={AppRoute.WORKS}>
-          
-        </Route>
-        <Route path={AppRoute.WORK}>
-          
-        </Route>
-      </Routes>
-      <Footer></Footer>
+      <Main>
+        <Routes>
+          <Route 
+            path={AppRoute.MAIN}
+            element={<MainPage/>}
+          >
+          </Route>
+          <Route 
+            path={AppRoute.WORKS}
+            element={<WorksPage/>}
+          >
+          </Route>
+          <Route 
+            path={AppRoute.WORK}
+            element={<WorkPage/>}
+          >
+          </Route>
+        </Routes>
+      </Main>
+      <Footer>
+
+      </Footer>
     </BrowserRouter>
   );
 }
