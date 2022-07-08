@@ -1,18 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createApi } from './api/api';
 import App from './components/pages/App/App';
 import GlobalStyles from './global-styles';
 import reportWebVitals from './reportWebVitals';
+import rootReducer from './store/reducers/root-reducer';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux'
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const api = createApi();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk.withExtraArgument(api))
+  )
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <GlobalStyles/>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -1,11 +1,11 @@
-import { Fragment } from "react";
+import Wrapper from "../../styled-blocks/wrapper/wrapper";
 
 function WorkPage() {
-    return <Fragment>
+    return <Wrapper>
         {/* Work name */}
         {/* Work description */}
         {/* List of similar works */}
-    </Fragment>
+    </Wrapper>
 }
 
 export default WorkPage;

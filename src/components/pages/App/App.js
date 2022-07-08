@@ -12,9 +12,7 @@ import NavigationHeader from "../../styled-blocks/navigation-parts/navigation-he
 import Wrapper from "../../styled-blocks/wrapper/wrapper";
 import MainPage from "../main/main-page";
 import WorkPage from "../work/work-page";
-import Work from "../work/work-page";
 import WorksPage from "../works/works-page";
-import Works from "../works/works-page";
 
 
 function App() {
@@ -26,9 +24,10 @@ function App() {
             {
               Object.keys(AppRoute).map((key, index) => {
                 if (key === "WORK") {
+                  // eslint-disable-next-line array-callback-return
                   return;
                 }
-                return <NavigationItemBlock text={key} link={key} key={key+index}/>
+                return <NavigationItemBlock text={key} link={key === "WORKS" ? `/works/1` : AppRoute[key]} key={key+index}/>
               })
             }
           </NavigationHeader>
@@ -47,14 +46,14 @@ function App() {
           >
           </Route>
           <Route 
-            path={AppRoute.WORK}
+            path={AppRoute.WORK+`:id`}
             element={<WorkPage/>}
           >
           </Route>
         </Routes>
       </Main>
       <Footer>
-
+        <Wrapper></Wrapper>
       </Footer>
     </BrowserRouter>
   );
