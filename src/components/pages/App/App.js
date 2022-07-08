@@ -1,62 +1,45 @@
-import './App.css';
-import Paragraph from '../../styled-blocks/text-parts/paragraph/paragraph';
-import HeadingOne from '../../styled-blocks/text-parts/heading-one/heading-one';
-import HeadingTwo from '../../styled-blocks/text-parts/heading-two/heading-two';
-import HeadingThree from '../../styled-blocks/text-parts/heading-three/heading-three';
-import CardLink from '../../styled-blocks/text-parts/card-link/card-link';
-import CardDescription from '../../styled-blocks/text-parts/card-description/card-description';
-import Pagination from '../../styled-blocks/navigation-parts/pagination/pagination';
-import PaginationItem from '../../styled-blocks/navigation-parts/pagination-item/pagination-item';
-import PaginationLink from '../../styled-blocks/navigation-parts/pagination-link/pagination-link';
-import Navigation from '../../styled-blocks/navigation-parts/navigation/navigation';
-import NavigationItem from '../../styled-blocks/navigation-parts/navigation-item/navigation-item';
-import NavigationLink from '../../styled-blocks/navigation-parts/navigation-link/navigation-link';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import { AppRoute } from "../../../utils/constants";
+import NavigationItemBlock from "../../blocks/navigation-item-block/navigation-item-block";
+import Footer from "../../styled-blocks/basic-parts/footer/footer";
+import Header from "../../styled-blocks/basic-parts/header/header";
+import NavigationHeader from "../../styled-blocks/navigation-parts/navigation-header/navigation-header";
+import Wrapper from "../../styled-blocks/wrapper/wrapper";
 
-function Main() {
+
+function App() {
   return (
-    <div className="App">
-      <HeadingOne>Test</HeadingOne>
-      <HeadingTwo>Test</HeadingTwo>
-      <HeadingThree>Test</HeadingThree>
-      <Paragraph>test</Paragraph>
-      <CardLink>test</CardLink>
-      <CardDescription>test test test</CardDescription>
-      <Pagination>
-        <PaginationItem>
-          <PaginationLink>Test</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink>Test</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink>Test</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink>Test</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink>Test</PaginationLink>
-        </PaginationItem>
-      </Pagination>
-      <Navigation>
-        <NavigationItem>
-          <NavigationLink>Test</NavigationLink>
-        </NavigationItem>
-        <NavigationItem>
-          <NavigationLink>Test</NavigationLink>
-        </NavigationItem>
-        <NavigationItem>
-          <NavigationLink>Test</NavigationLink>
-        </NavigationItem>
-        <NavigationItem>
-          <NavigationLink>Test</NavigationLink>
-        </NavigationItem>
-        <NavigationItem>
-          <NavigationLink>Test</NavigationLink>
-        </NavigationItem>
-      </Navigation>
-    </div>
+    <BrowserRouter>
+      <Header>
+        <Wrapper display="flex" align="center">
+          <NavigationHeader>
+            {
+              Object.keys(AppRoute).map((key, index) => {
+                if (key !== "WORK") {
+                  return <NavigationItemBlock text={key} link={key} key={key+index}/>
+                }
+              })
+            }
+          </NavigationHeader>
+        </Wrapper>
+      </Header>
+      <Routes>
+        <Route path={AppRoute.MAIN}>
+        </Route>
+        <Route path={AppRoute.WORKS}>
+          
+        </Route>
+        <Route path={AppRoute.WORK}>
+          
+        </Route>
+      </Routes>
+      <Footer></Footer>
+    </BrowserRouter>
   );
 }
 
-export default Main;
+export default App;

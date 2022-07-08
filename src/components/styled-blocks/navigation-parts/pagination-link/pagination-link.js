@@ -5,6 +5,7 @@ const PaginationLink = styled.a`
     line-height: 1.2rem;
     color: #fff;
     text-decoration: none;
+    border-radius: 5px;
 `;
 
 export default PaginationLink;
