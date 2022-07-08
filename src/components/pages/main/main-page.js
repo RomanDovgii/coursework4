@@ -20,13 +20,13 @@ function MainPage(props) {
         if (JSON.stringify(works) === JSON.stringify([])) {
             loadWorks();
         }
-    }, [visibleWorks, pages]);
+    }, [visibleWorks, pages, loadWorks, works]);
 
     const renderPagination = () => {
         let content =[];
         for (let i = 1; i <= pages; i++) {
             content.push(
-                <PaginationItem key={`pagination` + i}>
+                <PaginationItem key={`pagination` + i} current={i === currentPage ? true : false}>
                     <PaginationLink 
                         href={`/works/${i}`} 
                         onClick={(evt) => {

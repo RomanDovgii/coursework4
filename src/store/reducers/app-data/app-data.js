@@ -17,7 +17,7 @@ const appData = (state = initialState, action) => {
         case ActionType.LOAD_WORKS:
             const newWorks  = [...action.payload];
             const newVisibleWorks = [...action.payload].slice((10*(state.currentPage-1)), (10*state.currentPage))
-            const newPages = Math.floor(action.payload.length / 10)
+            const newPages = Math.ceil(action.payload.length / 10)
             return extend(
                 state,
                 {
