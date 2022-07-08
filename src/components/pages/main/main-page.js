@@ -12,6 +12,7 @@ import PaginationLink from "../../styled-blocks/navigation-parts/pagination-link
 import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
 import { changePage, changeSort } from "../../../store/actions/action";
+import { Button } from "@mui/material";
 
 function MainPage(props) {
     const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
@@ -42,24 +43,27 @@ function MainPage(props) {
     }
 
     return <Wrapper>
-        <button 
+        <Button 
             onClick={(evt) => {
                 evt.preventDefault();
                 sort(``);
             }}
-        >Disable sorting</button>
-        <button 
+            sx={"margin: 3rem 0; color: #fff"}
+        >Disable sorting</Button>
+        <Button 
             onClick={(evt) => {
                 evt.preventDefault();
                 sort(`title`);
             }}
-        >Sort by title</button>
-        <button 
+            sx={"margin: 3rem 0; color: #fff"}
+        >Sort by title</Button>
+        <Button 
             onClick={(evt) => {
                 evt.preventDefault();
                 sort(`date`);
             }}
-        >Sort by date</button>
+            sx={"margin: 3rem 0; color: #fff"}
+        >Sort by date</Button>
         <List>
             {
                 visibleWorks.map((work) => {

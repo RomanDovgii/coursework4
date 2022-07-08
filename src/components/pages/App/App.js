@@ -13,26 +13,31 @@ import Wrapper from "../../styled-blocks/wrapper/wrapper";
 import MainPage from "../main/main-page";
 import WorkPage from "../work/work-page";
 import WorksPage from "../works/works-page";
+import { AppBar, Box, Button } from "@mui/material";
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Header>
+      <AppBar>
         <Wrapper display="flex" align="center">
-          <NavigationHeader>
+          <Box>
             {
               Object.keys(AppRoute).map((key, index) => {
                 if (key === "WORK") {
                   // eslint-disable-next-line array-callback-return
                   return;
                 }
-                return <NavigationItemBlock text={key} link={key === "WORKS" ? `/works/1` : AppRoute[key]} key={key+index}/>
+                return (
+                    <Button link={key === "WORKS" ? `/works/1` : AppRoute[key]} key={key+index} sx={{ color: '#fff' }}>
+                      {key}
+                    </Button>
+                )
               })
             }
-          </NavigationHeader>
+          </Box>
         </Wrapper>
-      </Header>
+      </AppBar>
       <Main>
         <Routes>
           <Route 
