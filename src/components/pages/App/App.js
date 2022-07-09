@@ -6,7 +6,6 @@ import {
 import { AppRoute } from "../../../utils/constants";
 import NavigationItemBlock from "../../blocks/navigation-item-block/navigation-item-block";
 import Footer from "../../styled-blocks/basic-parts/footer/footer";
-import Header from "../../styled-blocks/basic-parts/header/header";
 import Main from "../../styled-blocks/basic-parts/main/main";
 import NavigationHeader from "../../styled-blocks/navigation-parts/navigation-header/navigation-header";
 import Wrapper from "../../styled-blocks/wrapper/wrapper";
@@ -15,7 +14,6 @@ import WorkPage from "../work/work-page";
 import WorksPage from "../works/works-page";
 import { AppBar } from "@mui/material";
 import UploadPage from "../upload/upload-page";
-import browserHistory from "../../../browser-history";
 
 
 function App() {
