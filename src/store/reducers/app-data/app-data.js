@@ -2,7 +2,6 @@ import { ActionType } from "../../../utils/constants"
 import { extend } from "../../../utils/functions";
 
 const initialState = {
-    currentPage: 1,
     works: [],
     visibleWorks: [],
     pages: 1,
