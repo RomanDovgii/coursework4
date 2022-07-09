@@ -1,7 +1,6 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { connect } from "react-redux";
 import { FetchWork } from "../../../store/actions/api-actions";
-import { ApiEndpoints } from "../../../utils/constants";
 import LoadingSpinner from "../../blocks/spinner/spinner";
 import Cover from "../../styled-blocks/text-parts/cover/cover";
 import HeadingOne from "../../styled-blocks/text-parts/heading-one/heading-one";
