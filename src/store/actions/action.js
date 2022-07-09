@@ -25,6 +25,7 @@ export const setPage = (page) => ({
     payload: page
 })
 
-export const resetPage = () => ({
-    type: ActionType.SORT
+export const resetPage = (page) => ({
+    type: ActionType.SORT,
+    payload: page
 })

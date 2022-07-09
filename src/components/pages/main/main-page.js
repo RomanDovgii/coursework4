@@ -11,13 +11,14 @@ import PaginationItem from "../../styled-blocks/navigation-parts/pagination-item
 import PaginationLink from "../../styled-blocks/navigation-parts/pagination-link/pagination-link";
 import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
-import { changePage, changeSort } from "../../../store/actions/action";
-import { Box, Button } from "@mui/material";
+import { changePage, changeSort, resetPage } from "../../../store/actions/action";
+import { Box } from "@mui/material";
+import Button from "../../styled-blocks/form-parts/button/button";
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from "../../blocks/spinner/spinner";
 
 function MainPage(props) {
-    const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
+    const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort, sortType} = props;
 
     useEffect(() => {
         if (JSON.stringify(works) === JSON.stringify([])) {
@@ -26,6 +27,10 @@ function MainPage(props) {
     }, [visibleWorks, pages, loadWorks, works]);
 
     const navigate = useNavigate();
+
+    const navigateToFirst = () => {
+        navigate(`/works/1`);
+    }
 
     const renderPagination = () => {
         let content =[];
@@ -50,25 +55,28 @@ function MainPage(props) {
     return <Wrapper>
         <Box sx={{ margin: "2rem 0"}} m={2}>        
             <Button 
+                active={sortType === "" ? true : false}
                 onClick={(evt) => {
                     evt.preventDefault();
                     sort(``);
+                    navigateToFirst();
                 }}
-                variant="contained"
             >Disable sorting</Button>
             <Button 
+                active={sortType === "title" ? true : false}
                 onClick={(evt) => {
                     evt.preventDefault();
                     sort(`title`);
+                    navigateToFirst();
                 }}
-                variant="contained"
             >Sort by title</Button>
-            <Button 
+            <Button
+                active={sortType === "date" ? true : false}
                 onClick={(evt) => {
                     evt.preventDefault();
                     sort(`date`);
+                    navigateToFirst();
                 }}
-                variant="contained"
             >Sort by date</Button>
         </Box>
 
@@ -117,7 +125,8 @@ const mapStateToProps = ({DATA}) => ({
     visibleWorks: DATA.visibleWorks,
     currentPage: DATA.currentPage,
     pages: DATA.pages,
-    works: DATA.works
+    works: DATA.works,
+    sortType: DATA.sort
 });
 
 export {MainPage};

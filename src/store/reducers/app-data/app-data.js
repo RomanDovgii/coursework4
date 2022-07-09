@@ -9,7 +9,7 @@ const initialState = {
     currentPage: 1,
     currentWork: 1,
     currentWorkData: {},
-    sort: `none`
+    sort: ``
 }
 
 const appData = (state = initialState, action) => {
@@ -86,7 +86,8 @@ const appData = (state = initialState, action) => {
                 {
                     works: sortedWorks,
                     visibleWorks: afterSortVisibleWorks,
-                    currentPage: 0,
+                    currentPage: 1,
+                    sort: action.payload,
                 }
             )  
         case ActionType.RESET_PAGE:

@@ -2,7 +2,7 @@ import "./spinner.css";
 
 function LoadingSpinner() {
   return (
-    <div class="lds-circle"><div></div></div>
+    <div className="lds-circle"><div></div></div>
   );
 }
 

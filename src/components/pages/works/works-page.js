@@ -11,13 +11,14 @@ import PaginationItem from "../../styled-blocks/navigation-parts/pagination-item
 import PaginationLink from "../../styled-blocks/navigation-parts/pagination-link/pagination-link";
 import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
-import { changePage, changeSort } from "../../../store/actions/action";
-import { Box, Button } from "@mui/material";
+import { changePage, changeSort, resetPage } from "../../../store/actions/action";
+import { Box } from "@mui/material";
+import Button from "../../styled-blocks/form-parts/button/button";
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from "../../blocks/spinner/spinner";
 
 function WorksPage(props) {
-    const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
+    const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort, sortType} = props;
 
     useEffect(() => {
         if (JSON.stringify(works) === JSON.stringify([])) {
@@ -47,28 +48,30 @@ function WorksPage(props) {
         return content;
     }
 
+    console.log(sortType)
+
     return <Wrapper>
         <Box sx={{ margin: "2rem 0"}} m={2}>        
             <Button 
+                active={sortType === "" ? true : false}
                 onClick={(evt) => {
                     evt.preventDefault();
                     sort(``);
                 }}
-                variant="contained"
             >Disable sorting</Button>
             <Button 
+                active={sortType === "title" ? true : false}
                 onClick={(evt) => {
                     evt.preventDefault();
                     sort(`title`);
                 }}
-                variant="contained"
             >Sort by title</Button>
-            <Button 
+            <Button
+                active={sortType === "date" ? true : false}
                 onClick={(evt) => {
                     evt.preventDefault();
                     sort(`date`);
                 }}
-                variant="contained"
             >Sort by date</Button>
         </Box>
 
@@ -117,7 +120,8 @@ const mapStateToProps = ({DATA}) => ({
     visibleWorks: DATA.visibleWorks,
     currentPage: DATA.currentPage,
     pages: DATA.pages,
-    works: DATA.works
+    works: DATA.works,
+    sortType: DATA.sort
 });
 
 export {WorksPage};
