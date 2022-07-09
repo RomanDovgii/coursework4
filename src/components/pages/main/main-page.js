@@ -2,7 +2,7 @@ import List from "../../styled-blocks/content-blocks/list/list";
 import Wrapper from "../../styled-blocks/wrapper/wrapper";
 import Card from "../../styled-blocks/content-blocks/card/card";
 import HeadingThree from "../../styled-blocks/text-parts/heading-three/heading-three";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import CardImage from "../../styled-blocks/text-parts/card-image/card-image";
 import CardDescription from "../../styled-blocks/text-parts/card-description/card-description";
 import CardLink from "../../styled-blocks/text-parts/card-link/card-link";
@@ -14,6 +14,7 @@ import { FetchWorks } from "../../../store/actions/api-actions";
 import { changePage, changeSort } from "../../../store/actions/action";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from "../../blocks/spinner/spinner";
 
 function MainPage(props) {
     const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
@@ -71,27 +72,32 @@ function MainPage(props) {
             >Sort by date</Button>
         </Box>
 
-        <List>
-            {
-                visibleWorks.map((work) => {
-                    return <Card key={work.name + work.id}>
-                        <CardImage src={work.cover}/>
-                        <HeadingThree color="navyblue">
-                            {work.title}
-                        </HeadingThree>
-                        <CardDescription>
-                            {work.description.length > 100 ? `${work.description.slice(0, 100)}...` : work.description}
-                        </CardDescription>
-                        <CardLink to={`/work/${work.id}`}>
-                            Read more
-                        </CardLink>
-                    </Card>
-                })
-            }
-        </List>
-        <Pagination>
-            {renderPagination()}        
-        </Pagination>
+        {JSON.stringify(works) === JSON.stringify([]) ?
+        <LoadingSpinner/>
+        : <Fragment>
+            <List>
+                {
+                    visibleWorks.map((work) => {
+                        return <Card key={work.name + work.id}>
+                            <CardImage src={work.cover}/>
+                            <HeadingThree color="navyblue">
+                                {work.title}
+                            </HeadingThree>
+                            <CardDescription>
+                                {work.description.length > 100 ? `${work.description.slice(0, 100)}...` : work.description}
+                            </CardDescription>
+                            <CardLink to={`/work/${work.id}`}>
+                                Read more
+                            </CardLink>
+                        </Card>
+                    })
+                }
+            </List>
+            <Pagination>
+                {renderPagination()}        
+            </Pagination>
+        </Fragment>
+        } 
     </Wrapper>
 }
 
