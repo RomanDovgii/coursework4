@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
 import { changePage, changeSort } from "../../../store/actions/action";
 import { Box, Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 function MainPage(props) {
     const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
@@ -22,6 +23,8 @@ function MainPage(props) {
             loadWorks();
         }
     }, [visibleWorks, pages, loadWorks, works]);
+
+    const navigate = useNavigate();
 
     const renderPagination = () => {
         let content =[];
@@ -33,6 +36,7 @@ function MainPage(props) {
                         onClick={(evt) => {
                             evt.preventDefault();
                             onPageClick(i);
+                            navigate(`/works/${i}`)
                         }}>
                         {i}
                     </PaginationLink>

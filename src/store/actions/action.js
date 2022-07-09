@@ -19,3 +19,12 @@ export const changeSort = (sort) => ({
     type: ActionType.SORT,
     payload: sort
 })
+
+export const setPage = (page) => ({
+    type: ActionType.SORT,
+    payload: page
+})
+
+export const resetPage = () => ({
+    type: ActionType.SORT
+})

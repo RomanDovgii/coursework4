@@ -11,27 +11,32 @@ import PaginationItem from "../../styled-blocks/navigation-parts/pagination-item
 import PaginationLink from "../../styled-blocks/navigation-parts/pagination-link/pagination-link";
 import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
-import { changePage } from "../../../store/actions/action";
+import { changePage, changeSort } from "../../../store/actions/action";
+import { Box, Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 function WorksPage(props) {
-    const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick} = props;
+    const {visibleWorks, works, currentPage, pages, loadWorks, onPageClick, sort} = props;
 
     useEffect(() => {
         if (JSON.stringify(works) === JSON.stringify([])) {
             loadWorks();
         }
-    }, [visibleWorks, pages]);
+    }, [visibleWorks, pages, loadWorks, works]);
+
+    const navigate = useNavigate();
 
     const renderPagination = () => {
         let content =[];
         for (let i = 1; i <= pages; i++) {
             content.push(
-                <PaginationItem key={`pagination` + i}>
+                <PaginationItem key={`pagination` + i} current={i === currentPage ? true : false}>
                     <PaginationLink 
                         href={`/works/${i}`} 
                         onClick={(evt) => {
                             evt.preventDefault();
                             onPageClick(i);
+                            navigate(`/works/${i}`)
                         }}>
                         {i}
                     </PaginationLink>
@@ -42,6 +47,30 @@ function WorksPage(props) {
     }
 
     return <Wrapper>
+        <Box sx={{ margin: "2rem 0"}} m={2}>        
+            <Button 
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    sort(``);
+                }}
+                variant="contained"
+            >Disable sorting</Button>
+            <Button 
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    sort(`title`);
+                }}
+                variant="contained"
+            >Sort by title</Button>
+            <Button 
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    sort(`date`);
+                }}
+                variant="contained"
+            >Sort by date</Button>
+        </Box>
+
         <List>
             {
                 visibleWorks.map((work) => {
@@ -72,6 +101,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onPageClick(newPage) {
         dispatch(changePage(newPage))
+    },
+    sort(sortType) {
+        dispatch(changeSort(sortType))
     }
 });
 

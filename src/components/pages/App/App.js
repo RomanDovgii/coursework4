@@ -15,6 +15,7 @@ import WorkPage from "../work/work-page";
 import WorksPage from "../works/works-page";
 import { AppBar } from "@mui/material";
 import UploadPage from "../upload/upload-page";
+import browserHistory from "../../../browser-history";
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
           >
           </Route>
           <Route 
-            path={AppRoute.WORK+`:id`}
+            path={AppRoute.WORK}
             element={<WorkPage/>}
           >
           </Route>

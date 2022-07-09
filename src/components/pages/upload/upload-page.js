@@ -40,8 +40,6 @@ function UploadPage(props) {
                 description: description,
                 cover: cover,
             }
-
-            console.log(inputData)
             onSubmit(inputData);
         } else {
             setError(true);

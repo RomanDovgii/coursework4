@@ -88,7 +88,15 @@ const appData = (state = initialState, action) => {
                     visibleWorks: afterSortVisibleWorks,
                     currentPage: 0,
                 }
-            )    
+            )  
+        case ActionType.RESET_PAGE:
+            const resetPage = action.payload;
+            return extend(
+                state,
+                {
+                    currentPage: resetPage,
+                }
+            )  
         default:
             console.log(`not valid action`)
             break;

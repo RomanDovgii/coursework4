@@ -25,5 +25,7 @@ export const ActionType = {
     LOAD_WORK: `LOAD_WORK`,
     UPLOAD_WORK: `UPLOAD_WORK`,
     CHANGE_PAGE: `CHANGE_PAGE`,
-    SORT: `SORT`
+    SORT: `SORT`,
+    SET_PAGE: `SET_PAGE`,
+    RESET_PAGE: `RESET_PAGE`
 }
