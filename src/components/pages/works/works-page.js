@@ -11,7 +11,7 @@ import PaginationItem from "../../styled-blocks/navigation-parts/pagination-item
 import PaginationLink from "../../styled-blocks/navigation-parts/pagination-link/pagination-link";
 import { connect } from "react-redux";
 import { FetchWorks } from "../../../store/actions/api-actions";
-import { changePage, changeSort, resetPage } from "../../../store/actions/action";
+import { changePage, changeSort } from "../../../store/actions/action";
 import { Box } from "@mui/material";
 import Button from "../../styled-blocks/form-parts/button/button";
 import { useNavigate } from 'react-router-dom';
@@ -47,8 +47,6 @@ function WorksPage(props) {
         }
         return content;
     }
-
-    console.log(sortType)
 
     return <Wrapper>
         <Box sx={{ margin: "2rem 0"}} m={2}>        
